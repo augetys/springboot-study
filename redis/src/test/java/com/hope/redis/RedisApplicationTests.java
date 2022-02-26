@@ -1,4 +1,4 @@
-package com.hope.mode;
+package com.hope.redis;
 
 import lombok.extern.slf4j.Slf4j;
 import org.junit.Ignore;
@@ -11,7 +11,7 @@ import org.springframework.boot.test.context.SpringBootTest;
 @SpringBootTest
 @Ignore
 @Slf4j
-public class ModeApplicationTests {
+public class RedisApplicationTests {
     @Test
     public void contextLoads() {
 

@@ -1,4 +1,4 @@
-package com.hope.mode;
+package com.hope.activiti;
 
 import lombok.extern.slf4j.Slf4j;
 import org.junit.Ignore;
@@ -11,7 +11,7 @@ import org.springframework.boot.test.context.SpringBootTest;
 @SpringBootTest
 @Ignore
 @Slf4j
-public class ModeApplicationTests {
+public class ActivitiApplicationTests {
     @Test
     public void contextLoads() {
 

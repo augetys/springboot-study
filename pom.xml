@@ -11,6 +11,16 @@
 
     <modules>
         <module>mode</module>
+        <module>spring-kafka</module>
+        <module>concurrent</module>
+        <module>redis</module>
+        <module>basis</module>
+        <module>xxl-job</module>
+        <module>dubbo-zookeeper</module>
+        <module>activiti</module>
+        <module>common</module>
+        <module>justauth</module>
+        <module>codegen</module>
     </modules>
 
     <properties>
