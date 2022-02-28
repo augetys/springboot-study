@@ -11,16 +11,17 @@
 
     <modules>
         <module>mode</module>
-        <module>spring-kafka</module>
+        <module>kafka</module>
         <module>concurrent</module>
         <module>redis</module>
         <module>basis</module>
         <module>xxl-job</module>
-        <module>dubbo-zookeeper</module>
+        <module>zookeeper</module>
         <module>activiti</module>
         <module>common</module>
         <module>justauth</module>
         <module>codegen</module>
+        <module>dubbo</module>
     </modules>
 
     <properties>
@@ -64,4 +65,12 @@
         </dependencies>
     </dependencyManagement>
 
+    <build>
+        <plugins>
+            <plugin>
+                <groupId>org.springframework.boot</groupId>
+                <artifactId>spring-boot-maven-plugin</artifactId>
+            </plugin>
+        </plugins>
+    </build>
 </project>
