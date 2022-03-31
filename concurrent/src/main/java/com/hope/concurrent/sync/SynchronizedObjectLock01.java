@@ -1,9 +1,12 @@
 package com.hope.concurrent.sync;
 
+import lombok.extern.slf4j.Slf4j;
+
 /**
  * Created by lijin on  2022/3/4
  */
-public class SynchronizedObjectLock01 implements Runnable{
+@Slf4j
+public class SynchronizedObjectLock01 implements Runnable {
 
     static SynchronizedObjectLock01 instance = new SynchronizedObjectLock01();
 
@@ -16,23 +19,23 @@ public class SynchronizedObjectLock01 implements Runnable{
 
         // 这个代码块使用的是第一把锁，当他释放后，后面的代码块由于使用的是第二把锁，因此可以马上执行
         synchronized (block1) {
-            System.out.println("block1锁,我是线程" + Thread.currentThread().getName());
+            log.info("block1锁,我是线程" + Thread.currentThread().getName());
             try {
                 Thread.sleep(3000);
             } catch (InterruptedException e) {
                 e.printStackTrace();
             }
-            System.out.println("block1锁,"+Thread.currentThread().getName() + "结束");
+            log.info("block1锁," + Thread.currentThread().getName() + "结束");
         }
 
         synchronized (block2) {
-            System.out.println("block2锁,我是线程" + Thread.currentThread().getName());
+            log.info("block2锁,我是线程" + Thread.currentThread().getName());
             try {
                 Thread.sleep(3000);
             } catch (InterruptedException e) {
                 e.printStackTrace();
             }
-            System.out.println("block2锁,"+Thread.currentThread().getName() + "结束");
+            log.info("block2锁," + Thread.currentThread().getName() + "结束");
         }
     }
 

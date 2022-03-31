@@ -1,9 +1,12 @@
 package com.hope.concurrent.sync;
 
+import lombok.extern.slf4j.Slf4j;
+
 /**
  * Created by lijin on  2022/3/4
  */
-public class SynchronizedObjectLock04 implements Runnable{
+@Slf4j
+public class SynchronizedObjectLock04 implements Runnable {
 
     static SynchronizedObjectLock instance1 = new SynchronizedObjectLock();
     static SynchronizedObjectLock instance2 = new SynchronizedObjectLock();
@@ -11,14 +14,14 @@ public class SynchronizedObjectLock04 implements Runnable{
     @Override
     public void run() {
         // 所有线程需要的锁都是同一把
-        synchronized(SynchronizedObjectLock04.class){
-            System.out.println("我是线程" + Thread.currentThread().getName());
+        synchronized (SynchronizedObjectLock04.class) {
+            log.info("我是线程" + Thread.currentThread().getName());
             try {
                 Thread.sleep(3000);
             } catch (InterruptedException e) {
                 e.printStackTrace();
             }
-            System.out.println(Thread.currentThread().getName() + "结束");
+            log.info(Thread.currentThread().getName() + "结束");
         }
     }
 
