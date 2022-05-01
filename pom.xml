@@ -22,6 +22,7 @@
         <module>justauth</module>
         <module>codegen</module>
         <module>dubbo</module>
+        <module>netty</module>
     </modules>
 
     <properties>

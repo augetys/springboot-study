@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>聊天室</title>
+    <link rel="icon" href="/static/img/chat.ico" type="image/x-icon"/>
+    <link rel="stylesheet" href="/static/css/init.css" type="text/css"/>
+    <link rel="stylesheet" href="/static/css/bootstrap.min.css" type="text/css"/>
+    <link rel="stylesheet" href="/static/css/user.css" type="text/css"/>
+</head>
+<body>
+
+<div id="container">
+    <!-- 消息接收区-->
+    <div id="div_msgzone" class="panel panel-default">
+        <div class="panel-heading">消息窗口</div>
+        <div id="div_msg" class="panel-body" style="width: 660px; height: 452px;">
+            <!-- 聊天框-->
+
+        </div>
+    </div>
+
+    <!-- 消息发送区-->
+    <div id="send_msg">
+        <textarea id="inp_send" class="form-control" style="height:100px;" placeholder="发送的内容"></textarea>
+        <br>
+        <button type="button" id="btn_send" class="btn btn-info" onclick="sendTo();">发送</button>
+    </div>
+</div>
+
+
+<script src="/static/js/common/jquery-1.9.1.min.js"></script>
+<script src="/static/js/common/bootstrap.min.js"></script>
+<script src="/static/js/common.js"></script>
+
+<script>
+    var user = null;
+    var socket;
+
+    if (!window.WebSocket) {
+        window.WebSocket = window.MozWebSocket;
+    }
+    if (window.WebSocket) {
+        socket = new WebSocket("ws://localhost:8020/chat");
+        socket.onmessage = function (data) {
+            if (data) {
+                console.log(data)
+                // var json = JSON.parse(data.data);
+                // console.log("收到一条新信息，类型为：" + json.content);
+                // $("#div_msg").append("<div style='margin-bottom:10px;position:relative;left:0;'><div style='color:blue'>服务器 16:1:7</div>" + json.content + "</div>")
+            }
+        };
+        // 连接成功1秒后，将用户信息注册到服务器在线用户表
+        socket.onopen = setTimeout(function (event) {
+            console.log("WebSocket已成功连接！");
+            ws.register();
+        }, 1000)
+
+        // 监听连接关闭事件
+        socket.onclose = function () {
+            // 监听整个过程中websocket的状态
+            console.log('ws连接状态：' + ws.readyState);
+        };
+
+        // 监听并处理error事件
+        socket.onerror = function (error) {
+            console.log(error);
+        }
+    } else {
+        alert("您的浏览器不支持WebSocket！");
+    }
+
+    // 获取用户信息
+    window.onload = function () {
+        $.ajax({
+            type: 'GET',
+            url: 'user/getUserInfo',
+            contentType: "application/json",
+            dataType: 'json',
+            success: function (data) {
+                console.log("获取用户信息...");
+                if (data.code === 200) {
+                    console.log(data.data)
+                    user = data.data
+                } else {
+                    alert(data.message);
+                }
+            }
+        });
+    }
+
+    function sendTo() {
+        var fromUserId = user.username
+        var content = $("#inp_send").val()
+        // 将自己发送的消息内容推送到消息框
+        $("#div_msg").append("<div style='margin-bottom:10px;position:relative;left:0;'><div style='color:green'>你 16:1:7</div>" + content + "</div>")
+        ws.singleSend(fromUserId, "test", content);
+    }
+</script>
+</body>
+</html>

@@ -1,0 +1,43 @@
+#服务器端口
+server:
+  port: 8080
+#  netty服务端口和webSocket path
+netty:
+  port: 8020
+spring:
+  datasource:
+    name: test
+    url: jdbc:mysql://localhost:3306/chat?useUnicode=true&characterEncoding=UTF-8&useSSL=false&autoReconnect=true&failOverReadOnly=false&serverTimezone=Asia/Shanghai
+    username: root
+    password: 123456
+    # 使用druid数据源
+    type: com.alibaba.druid.pool.DruidDataSource
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    filters: stat
+    maxActive: 20
+    initialSize: 1
+    maxWait: 60000
+    minIdle: 1
+    timeBetweenEvictionRunsMillis: 60000
+    minEvictableIdleTimeMillis: 300000
+    validationQuery: select 'x'
+    testWhileIdle: true
+    testOnBorrow: false
+    testOnReturn: false
+    poolPreparedStatements: true
+    maxOpenPreparedStatements: 20
+  thymeleaf:
+    cache: false
+    prefix: classpath:/templates/
+    check-template-location: true
+    suffix: .html
+    encoding: UTF-8
+    content-type: text/html
+
+mybatis-plus:
+  mapper-locations:
+    - classpath:mapper/**/*Mapper.xml
+  typeAliasesPackage: com.hope.netty.*.model
+  configuration:
+    map-underscore-to-camel-case: true
+    cache-enabled: true

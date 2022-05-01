@@ -1,0 +1,10 @@
+#div_msg {
+    overflow-y: auto;
+}
+.panel-body {
+    padding: 15px;
+}
+#container{
+    width: 660px;
+    margin: 20px auto auto;
+}
