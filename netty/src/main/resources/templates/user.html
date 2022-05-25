@@ -94,6 +94,7 @@
         var content = $("#inp_send").val()
         // 将自己发送的消息内容推送到消息框
         $("#div_msg").append("<div style='margin-bottom:10px;position:relative;left:0;'><div style='color:green'>你 16:1:7</div>" + content + "</div>")
+        // 将消息推送到服务端
         ws.singleSend(fromUserId, "test", content);
     }
 </script>

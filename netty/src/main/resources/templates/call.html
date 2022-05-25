@@ -11,6 +11,7 @@
 <body>
 
 <div class="qqBox">
+    <!--  聊天框头部（用户头像、昵称、关闭窗口按钮）-->
     <div class="BoxHead">
         <div class="headImg">
             <img id="avatarUrl" src=""/>
@@ -18,13 +19,16 @@
         <div id="username" class="internetName"></div>
         <button class="close logout" onclick="logout()">&times;</button>
     </div>
+
     <div class="context">
+        <!-- 聊天对象列表-->
         <div class="conLeft">
             <ul>
 
             </ul>
         </div>
         <div class="conRight">
+            <!-- 消息列表-->
             <div class="Righthead">
                 <div class="headName"></div>
             </div>
@@ -34,6 +38,7 @@
 
                 </ul>
             </div>
+            <!--  表情包和文件上传-->
             <div class="RightFoot">
                 <div class="emoji">
                     <ul>
@@ -52,6 +57,7 @@
                         </li>
                     </ul>
                 </div>
+                <!-- 聊天框输入框-->
                 <div class="inputBox">
                     <input id="toUserId" type="hidden">
                     <input id="toGroupId" type="hidden">
@@ -63,6 +69,7 @@
         </div>
     </div>
 
+    <!-- 文件上传弹出框-->
     <div class="modal fade" id="upload-modal">
         <div class="modal-dialog">
             <div class="modal-content">
